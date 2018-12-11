@@ -98,7 +98,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # TAKEN FROM BASH PROFILE
-export VISUAL="atom"
+export VISUAL="atom --wait"
 export EDITOR="$VISUAL"
 
 export NVM_DIR="$HOME/.nvm"
@@ -129,3 +129,8 @@ eval "$(hub alias -s)"
 export PATH="/usr/local/bin:$PATH"
 
 source $HOME/.tokens.sh
+
+#kill node server
+function killTcpListen () {
+  kill -9 $(lsof -sTCP:LISTEN -i:$1 -t)
+}
